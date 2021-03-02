@@ -20,7 +20,7 @@ struct ContentView: View {
         
         NavigationView {
             Form {
-                Section {
+                Section (header: Text("Bill Total/Number of People")){
                     TextField("Amount", text: $checkAmount)
                         .keyboardType(.decimalPad)
                     
@@ -30,6 +30,15 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
+                }
+                Section (header: Text("Tip Percentage?")){
+                    Picker("Tip percentage", selection:
+                            $tipPercentage) {
+                        ForEach(0 ..< tipPercentages.count) {
+                            Text("\(self.tipPercentages[$0])%")
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
                 Section {
                     Text("$\(checkAmount)")
